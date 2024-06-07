@@ -15,6 +15,9 @@ public class PokemonResponseDTO {
 	private String tipoSecundario;
 
 	private Double valorUnitario;
+	
+
+	private String imagem;
 
 	public PokemonResponseDTO() {
 		super();
@@ -27,6 +30,7 @@ public class PokemonResponseDTO {
 		this.tipoPrimario = pokemon.getTypes().getName1();
 		this.tipoSecundario = pokemon.getTypes().getName2();
 		this.valorUnitario = pokemon.getValorUnitario();
+		this.imagem = pokemon.getImagem();
 	}
 
 	public String getName() {
@@ -67,6 +71,14 @@ public class PokemonResponseDTO {
 
 	public void setValorUnitario(Double valorUnitario) {
 		this.valorUnitario = valorUnitario;
+	}
+
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
 	}
 
 }
