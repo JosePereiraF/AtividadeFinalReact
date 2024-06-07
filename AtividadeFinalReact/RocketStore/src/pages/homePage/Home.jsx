@@ -26,12 +26,24 @@ export const PagPrincipal = () => {
   useEffect(()=>{
       obterPokemons();
    },[]);
+
+
+
+   const pokemonFiltro = (name) => {
+    if (name === "") {
+      obterPokemons();
+      return;
+    }
+
+    const filtroPokemon = pokemons.filter(pokemon => (pokemon.name.toLowerCase()).includes(name.toLowerCase()));
+    setPokemons(filtroPokemon);
+  };
   
   return (
     <>
     <div className={styles.container}>
     <div className={styles.body}>
-      <NavBarPadrao/>
+      <NavBarPadrao pokemonFiltro={pokemonFiltro}/>
       </div>
     <div className={styles.card}> 
     <Container maxWidth="false">

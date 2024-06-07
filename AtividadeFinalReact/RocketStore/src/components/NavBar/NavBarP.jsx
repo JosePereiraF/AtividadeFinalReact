@@ -54,36 +54,37 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export function NavBarPadrao() {
+
+
+
+export function NavBarPadrao({ pokemonFiltro }) {
+  const handleSearchChange = (event) => {
+    pokemonFiltro(event.target.value);
+  };
+
   return (
     <Box sx={{ flexGrow: 1, marginBottom: "1em" }}>
       <AppBar position="static" sx={{ backgroundColor: '#000000' }}>
         <Toolbar>
-        <img src={logo} alt="Logo"
-            style={{ height: 85, width: 205, marginRight: '16px' }}/>
-          <Typography
-          
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-
-          >
-          <div className={styles.header}>
-          <a href="" className={styles.Home}>HOME</a>
-          <a href="" className={styles.Home}>SOBRE NOS</a>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            
-              />
-          </Search>
-          <a href="">
-          <img src={carrinho} alt="Carrinho"
-          style={{height: 100, width: 205, justifyContent: 'left'}}/>
-          </a>
-          </div>
+          <img src={logo} alt="Logo" style={{ height: 85, width: 205, marginRight: '16px' }} />
+          <Typography sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
+            <div className={styles.header}>
+              <a href="" className={styles.Home}>HOME</a>
+              <a href="" className={styles.Home}>SOBRE NOS</a>
+              <Search>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  placeholder="Search…"
+                  inputProps={{ 'aria-label': 'search' }}
+                  onChange={handleSearchChange}
+                />
+              </Search>
+              <a href="">
+                <img src={carrinho} alt="Carrinho" style={{ height: 100, width: 205, justifyContent: 'left' }} />
+              </a>
+            </div>
           </Typography>
         </Toolbar>
       </AppBar>
