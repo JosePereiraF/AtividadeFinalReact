@@ -8,7 +8,11 @@
 
   }
 .container{
-
     min-height: 100vh;
-    min-width: 100vw;
+    min-width: 98.9vw;
+
+
+}
+.card{
+    max-width: 100vw;
 }

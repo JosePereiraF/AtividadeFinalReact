@@ -15,8 +15,8 @@ export const PagPrincipal = () => {
   function obterPokemons() {
       GetAllPokemon()
           .then((r) => {
-              setPokemons(r.results);
-              console.log(r.data[0].name);
+              setPokemons(r.data);
+              console.log(r.data);
           })
           .catch((err) => {
               console.error(err);
@@ -32,24 +32,19 @@ export const PagPrincipal = () => {
     <div className={styles.container}>
     <div className={styles.body}>
       <NavBarPadrao/>
-    </div>
+      </div>
+    <div className={styles.card}> 
     <Container maxWidth="false">
-      <Grid container>
-        <Grid item xs={3}>
-      <PokemonCard/>
-        </Grid>
-        <Grid item xs={3}>
-      <PokemonCard/>
-        </Grid>
-        <Grid item xs={3}>
-      <PokemonCard/>
-        </Grid>
-        <Grid item xs={3}>
-      <PokemonCard/>
-        </Grid>      
-      </Grid>
+    <Grid container spacing={3}>
+            {pokemons && pokemons.map((pokemon) => (
+              <Grid item xs={2} key={pokemon.name}>
+                <PokemonCard name={pokemon.name} image={pokemon.imagem} />
+              </Grid>
+            ))}
+          </Grid>
      
     </Container>
+          </div>
     </div>
     </>
   );
