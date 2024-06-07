@@ -8,6 +8,9 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import logo from '../../assets/img/logoPokestore.png'
+import styles from './styles.module.css';
+import carrinho from '../../assets/img/Carrinho-selecionado.png'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -43,9 +46,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     [theme.breakpoints.up('sm')]: {
-      width: '12ch',
+      width: '30ch',
       '&:focus': {
-        width: '20ch',
+        width: '35ch',
       },
     },
   },
@@ -53,26 +56,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export function NavBarPadrao() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <Box sx={{ flexGrow: 1, marginBottom: "1em" }}>
+      <AppBar position="static" sx={{ backgroundColor: '#000000' }}>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+        <img src={logo} alt="Logo"
+            style={{ height: 85, width: 205, marginRight: '16px' }}/>
           <Typography
-            variant="h6"
-            noWrap
-            component="div"
+          
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+
           >
-            MUI
-          </Typography>
+          <div className={styles.header}>
+          <a href="" className={styles.Home}>HOME</a>
+          <a href="" className={styles.Home}>SOBRE NOS</a>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -80,8 +76,15 @@ export function NavBarPadrao() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
-            />
+            
+              />
           </Search>
+          <a href="">
+          <img src={carrinho} alt="Carrinho"
+          style={{height: 100, width: 205, justifyContent: 'left'}}/>
+          </a>
+          </div>
+          </Typography>
         </Toolbar>
       </AppBar>
     </Box>
