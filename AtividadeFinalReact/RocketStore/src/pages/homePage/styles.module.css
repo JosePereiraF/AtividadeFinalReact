@@ -1,0 +1,14 @@
+*{
+    gap: 0;
+    padding: 0;
+}
+.body {
+    padding: 0;
+    min-height: 100vh;
+    min-width: 100vw;
+    gap: 0;
+
+  }
+.container{
+    background-color: black;
+}
