@@ -14,6 +14,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
@@ -101,4 +102,10 @@ public class PokemonService {
 				.orElseThrow(() -> new ResourceNotFoundException("Pokemon não encontrado!"));
 		return pokemon;
 	}
+
+	public List<PokemonResponseDTO> listarPagina(Pageable page){
+		if(page == null) new ResourceNotFoundException("Recurso não encontrado");
+		return repository.findAll(page).stream().map(i-> new PokemonResponseDTO(i)).collect(Collectors.toList());
+	}
+	
 }
