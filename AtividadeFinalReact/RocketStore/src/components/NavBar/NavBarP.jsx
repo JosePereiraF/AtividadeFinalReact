@@ -63,7 +63,9 @@ export function NavBarPadrao({ pokemonFiltro }) {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, marginBottom: "1em" }}>
+    <div>
+
+    <Box sx={{ flexGrow: 1, marginBottom: "1em"}}>
       <AppBar position="static" sx={{ backgroundColor: '#000000' }}>
         <Toolbar>
           <img src={logo} alt="Logo" style={{ height: 85, width: 205, marginRight: '16px' }} />
@@ -89,5 +91,6 @@ export function NavBarPadrao({ pokemonFiltro }) {
         </Toolbar>
       </AppBar>
     </Box>
+    </div>
   );
 }

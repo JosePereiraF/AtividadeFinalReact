@@ -41,12 +41,12 @@ export const PagPrincipal = () => {
   
   return (
     <>
-    <div className={styles.container}>
     <div className={styles.body}>
       <NavBarPadrao pokemonFiltro={pokemonFiltro}/>
       </div>
-    <div className={styles.card}> 
-    <Container maxWidth="false">
+    <div>
+      <div> 
+    <Container maxWidth="100vw">
     <Grid container spacing={3}>
             {pokemons && pokemons.map((pokemon) => (
               <Grid item xs={2} key={pokemon.name}>
