@@ -4,9 +4,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
+import styles from './styles.module.css';
 
-export default function PokemonCard({name, image, type1, type2}) {
-  // {type1}  
+export default function PokemonCard({name, image, type1, type2, valor}) { 
   const tipo = () => {
     const resposta = type2 !== "Nulo" ? type2 : "";
     return type1 + (resposta ? ` / ${resposta}` : "");
@@ -26,12 +26,14 @@ export default function PokemonCard({name, image, type1, type2}) {
           </Typography>
           <Typography variant="body2" color="text.secondary">
           Type: {tipo()}
+          <br />
+          Valor: R$ {valor}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
+        <Button sx={{backgroundColor: '#D3D3D3'}}>
+          Adicionar ao carrinho
         </Button>
       </CardActions>
     </Card>

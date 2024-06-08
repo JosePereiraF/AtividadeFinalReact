@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { NavBarPadrao } from "../../components/NavBar/NavBarP";
 import { Container, Grid } from "@mui/material";
-import styles from './styles.module.css'; // Importar corretamente o módulo CSS
+import styles from './styles.module.css';
 import PokemonCard from "../../components/pokeCard";
 import axios from "axios";
 import { GetAllPokemon } from "../../services/produto";
@@ -59,7 +59,7 @@ export const PagPrincipal = () => {
     <Grid container spacing={3}>
             {pokemonPagina.map((pokemon) => (
               <Grid item xs={2} key={pokemon.name}>
-                <PokemonCard name={pokemon.name} image={pokemon.imagem} type1={pokemon.tipoPrimario} type2={pokemon.tipoSecundario}/>
+                <PokemonCard name={pokemon.name} image={pokemon.imagem} type1={pokemon.tipoPrimario} type2={pokemon.tipoSecundario} valor={pokemon.valorUnitario}/>
               </Grid>
             ))}
           </Grid>
