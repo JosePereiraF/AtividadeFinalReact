@@ -11,12 +11,19 @@ import { GetAllPokemon } from "../../services/produto";
 export const PagPrincipal = () => {
 
   const [pokemons, setPokemons]= useState([]);
+  const [pokemonsPorPagina, setPokemonsPorPagina] = useState(30)
+  const [paginaAtual, setPaginaAtual] = useState(0)
+
+  const pages = Math.ceil(pokemons.length / pokemonsPorPagina)
+  const startIndex = paginaAtual * pokemonsPorPagina;
+  const endIndex = startIndex + pokemonsPorPagina;
+  const pokemonPagina = pokemons.slice(startIndex, endIndex)
+
 
   function obterPokemons() {
-      GetAllPokemon()
+    GetAllPokemon()
           .then((r) => {
               setPokemons(r.data);
-              console.log(r.data);
           })
           .catch((err) => {
               console.error(err);
@@ -27,7 +34,9 @@ export const PagPrincipal = () => {
       obterPokemons();
    },[]);
 
-
+   useEffect(()=>{
+    setPaginaAtual(0)
+   },[pokemonsPorPagina])
 
    const pokemonFiltro = (name) => {
     if (name === "") {
@@ -48,14 +57,29 @@ export const PagPrincipal = () => {
       <div> 
     <Container maxWidth="100vw">
     <Grid container spacing={3}>
-            {pokemons && pokemons.map((pokemon) => (
+            {pokemonPagina.map((pokemon) => (
               <Grid item xs={2} key={pokemon.name}>
-                <PokemonCard name={pokemon.name} image={pokemon.imagem} />
+                <PokemonCard name={pokemon.name} image={pokemon.imagem} type1={pokemon.tipoPrimario} type2={pokemon.tipoSecundario}/>
               </Grid>
             ))}
           </Grid>
      
     </Container>
+          </div>
+          <div>
+            {Array.from(Array(pages),(pokemons, index)=>{
+              return <button className={styles.botaoPaginacao} value={index} onClick={(e) => setPaginaAtual(Number(e.target.value))}>{index + 1}</button>
+            })}
+          </div>
+          <div>
+            <select className={styles.selectMenu} value={pokemonsPorPagina} onChange={(e) => setPokemonsPorPagina(Number(e.target.value))}>
+            <option value={30}>padrão</option>
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={40}>40</option>
+              <option value={50}>50</option>
+              <option value={60}>60</option>
+            </select>
           </div>
     </div>
     </>

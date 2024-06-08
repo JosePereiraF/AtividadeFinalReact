@@ -7,3 +7,42 @@
 .container{
     min-height: 100vh;
 }
+.botaoPaginacao {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 10px 20px; 
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+  }
+  
+  .botaoPaginacao:hover {
+    background-color: white; 
+    color: #4CAF50; 
+  }
+
+  .botaoSelecionado {
+    background-color: #45a049;
+    border: #4CAF50;
+    color: white;
+  }
+  
+  .selectMenu {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: #4CAF50;
+    background-color: white;
+    color: #4CAF50;
+    cursor: pointer;
+  }
+  
+  .selectMenu:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  
