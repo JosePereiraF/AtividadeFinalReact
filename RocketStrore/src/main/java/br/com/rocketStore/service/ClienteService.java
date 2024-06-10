@@ -99,8 +99,8 @@ public class ClienteService {
 	}
 	public ClienteResponseDTO login(LoginDTO login) {
 		Cliente cliente = repository.findByEmail(login.getLogin());
-		if(cliente == null || !encoder.encode(login.getSenha()).equals(cliente.getSenha())) new ResourceNotFoundException("Login ou senha invalida");
-		return new ClienteResponseDTO(cliente);
+		if(cliente == null || !encoder.matches(login.getSenha(), cliente.getSenha())) throw new ResourceNotFoundException("Login ou senha invalida");
+		return new ClienteResponseDTO(cliente);	
 		
 	}
 }
