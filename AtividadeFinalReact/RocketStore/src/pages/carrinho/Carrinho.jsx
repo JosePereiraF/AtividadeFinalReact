@@ -8,15 +8,14 @@ import { cartContext } from "../../context/CarrinhoContext";
 
 export function Carrinho() {
   const [itens, setItens] = useState([]);
-  const {valorTotal} = useContext(cartContext);
+  const { valorTotal } = useContext(cartContext);
   const {carrinho} = useContext(cartContext);
+
   useEffect(() => {
-    //const carrinho = JSON.parse(localStorage.getItem("carrinho"));
     if (carrinho) {
       setItens(carrinho);
     }
   }, [carrinho]);
- 
 
   return (
     <>

@@ -12,6 +12,9 @@ const CartProvider = (props) =>{
         const savedCarrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
         setCarrinho(savedCarrinho);
       }, []);
+      useEffect(() => {
+        valorTotalCarrinho(carrinho); // Calcular o total sempre que o carrinho mudar
+    }, [carrinho]);
     
     function valorTotalCarrinho() {
       let total = 0;
@@ -20,27 +23,36 @@ const CartProvider = (props) =>{
       });
       setValorTotal(total);
     }
-    // function adicionarItem(item) {
-    //   setCartItens((additem) => {
-    //     if (cartItens.includes(item)) {
-    //       return additem.map((itemadd) =>
-    //         itemadd.name === item.name
-    //           ? { ...item, quantidade: item.quantidade + 1 }
-    //           : ""
-    //       );
-    //     } else {
-    //       return additem([...cartItens, item]);
-    //     }
-    //   });
-    // }
-    function adicioanrItem(item){
+
+    function adicionarItem(item){
+        const itemadd ={
+          index: carrinho.length+1,
+          ...item,
+          quantidade:1
+        }
+
         const itens = [...carrinho];
-        const indexItem = itens.findIndex(i =>i.name == item.name);
-        if(indexItem !== "") itens[indexItem].quantidade +=1;
-        else setCarrinho(...carrinho, item);
-        setCarrinho(itens);
-        localStorage.setItem("carrinho",JSON.stringify(itens));
-    };
+        adicionando();
+    function adicionando() {
+      
+        if (itens.length < 1) {
+            itens.push(itemadd);
+        } else { 
+            for (let i = 0; i < itens.length; i++) {
+                if (itens[i].name.toLowerCase() === itemadd.name.toLowerCase()) {
+                  itens[i].quantidade += 1; 
+                  return;
+                }
+            }
+            itens.push(itemadd);
+        }
+    }
+
+
+    
+    setCarrinho(itens);
+    localStorage.setItem("carrinho", JSON.stringify(itens));
+}
     function removeritem(item){
         const itens = [...carrinho];
         const indexItem = itens.findIndex(i =>i.name == item.name);
@@ -57,10 +69,11 @@ const CartProvider = (props) =>{
         <cartContext.Provider
         value={{
           carrinho,
-          adicioanrItem,
+          adicionarItem,
           removeritem,
           limparCarrinho,
           valorTotalCarrinho,
+          valorTotal,
         }}
         >
             {props.children}
