@@ -1,42 +1,50 @@
-import React, { useState } from 'react';
-import { Container, TextField, Button, Typography } from '@mui/material';
+import React, { useState } from "react";
+import { Container, TextField, Button, Typography } from "@mui/material";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
 
 export function FormPage() {
-  const [nome, setNome] = useState('');
-  const [telefone, setTelefone] = useState('');
-  const [email, setEmail] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [senha, setSenha] = useState('');
-  const [confirmarSenha, setConfirmarSenha] = useState('');
-  const [endereco, setEndereco] = useState('');
+  const [nome, setNome] = useState("");
+  const [telefone, setTelefone] = useState("");
+  const [email, setEmail] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
+  const [endereco, setEndereco] = useState("");
   const [cadastrado, setCadastrado] = useState(false);
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
   const handleCadastrar = () => {
     // Validar todos os campos aqui antes de prosseguir com o cadastro
-    if (!nome || !telefone || !email || !cpf || !senha || !confirmarSenha || !endereco) {
-      alert('Todos os campos são obrigatórios.');
+    if (
+      !nome ||
+      !telefone ||
+      !email ||
+      !cpf ||
+      !senha ||
+      !confirmarSenha ||
+      !endereco
+    ) {
+      alert("Todos os campos são obrigatórios.");
       return;
     }
     // Validar o formato do email
     if (!/\S+@\S+\.\S+/.test(email)) {
-      alert('Por favor, insira um email válido.');
+      alert("Por favor, insira um email válido.");
       return;
     }
     // Validar o telefone
     if (!/^\d{10}$/.test(telefone)) {
-      alert('Por favor, insira um número de telefone válido com 10 dígitos.');
+      alert("Por favor, insira um número de telefone válido com 10 dígitos.");
       return;
     }
     // Validar o CPF
     if (!/^\d{11}$/.test(cpf)) {
-      alert('Por favor, insira um CPF válido com 11 dígitos.');
+      alert("Por favor, insira um CPF válido com 11 dígitos.");
       return;
     }
     // Validar a senha
     if (senha !== confirmarSenha) {
-      alert('As senhas não coincidem.');
+      alert("As senhas não coincidem.");
       return;
     }
     // Se todos os campos passaram nas validações prosseguir com o cadastro
@@ -48,8 +56,6 @@ export function FormPage() {
     console.log("Endereço:", endereco);
     // handleCadastrar() pode ser chamado aqui
     setCadastrado(true); // apenas para demonstração, substitua pela lógica real de cadastro
-  
-    
   };
 
   const mostrarOuOcultarSenha = () => {
@@ -59,7 +65,11 @@ export function FormPage() {
   return (
     <Container maxWidth="sm" component="article" className="form">
       <h1>Formulário</h1>
-      <form onSubmit={(event) => { event.preventDefault(); }}>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}
+      >
         <TextField
           id="nome"
           label="Nome"
@@ -67,7 +77,9 @@ export function FormPage() {
           margin="dense"
           fullWidth
           value={nome}
-          onChange={(event) => setNome(event.target.value.replace(/[^a-zA-Z\s]/g, '').trim())}
+          onChange={(event) =>
+            setNome(event.target.value.replace(/[^a-zA-Z\s]/g, "").trim())
+          }
         />
         <TextField
           id="telefone"
@@ -76,7 +88,9 @@ export function FormPage() {
           margin="dense"
           fullWidth
           value={telefone}
-          onChange={(event) => setTelefone(event.target.value.replace(/\D/g, '').substr(0, 10))}
+          onChange={(event) =>
+            setTelefone(event.target.value.replace(/\D/g, "").substr(0, 10))
+          }
         />
         <TextField
           id="email"
@@ -95,7 +109,9 @@ export function FormPage() {
           margin="dense"
           fullWidth
           value={cpf}
-          onChange={(event) => setCpf(event.target.value.replace(/\D/g, '').substr(0, 11))}
+          onChange={(event) =>
+            setCpf(event.target.value.replace(/\D/g, "").substr(0, 11))
+          }
         />
         <TextField
           id="senha"
@@ -110,12 +126,18 @@ export function FormPage() {
             endAdornment: (
               <>
                 {mostrarSenha ? (
-                  <VscEyeClosed onClick={mostrarOuOcultarSenha} className="iconeOlho" />
+                  <VscEyeClosed
+                    onClick={mostrarOuOcultarSenha}
+                    className="iconeOlho"
+                  />
                 ) : (
-                  <VscEye onClick={mostrarOuOcultarSenha} className="iconeOlho" />
+                  <VscEye
+                    onClick={mostrarOuOcultarSenha}
+                    className="iconeOlho"
+                  />
                 )}
               </>
-            )
+            ),
           }}
         />
         <TextField
@@ -146,7 +168,6 @@ export function FormPage() {
         >
           Cadastrar
         </Button>
-
       </form>
       {cadastrado && (
         <Typography variant="h6" color="secondary" className="mensagem-sucesso">
