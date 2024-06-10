@@ -2,11 +2,11 @@ import React from "react";
 import styles from './styles.module.css';
 export function FormaPagamento({valor}){
     
-    const avista =".Por apenas R$"+(valor*0.9)+".";
+    const avista = ".Por apenas R$"+(valor*0.9).toFixed(2)+".";
  
    
     
-    const parcelado=" R$"+(valor*1.20)+ "em 12 vezes de "+((valor*1.20)/12).toFixed(2)+".";  
+    const parcelado=" R$"+(valor*1.20).toFixed(2)+ " em 12 vezes de  R$"+((valor*1.20)/12).toFixed(2)+".";  
  
 
     return (
@@ -20,7 +20,7 @@ export function FormaPagamento({valor}){
       <br />
       <input type="radio" id="a-vista" className="a-vista" name="opcao" value="a-vista" />
       <label htmlFor="a-vista" id="aVista">
-      <s> R${valor}</s> {avista}
+      <s> R${(valor).toFixed(2)}</s> {avista}
         </label>
       <br />
       <br />

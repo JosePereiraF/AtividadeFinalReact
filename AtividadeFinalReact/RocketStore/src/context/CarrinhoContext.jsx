@@ -1,70 +1,128 @@
-import { createContext, useState,useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
+import { postCarrinho } from "../services/carrinho";
 
 const cartContext = createContext();
 
-const CartProvider = (props) =>{
+const CartProvider = (props) => {
+  const [carrinho, setCarrinho] = useState([]);
+  const [valorTotal, setValorTotal] = useState(0);
 
-    const [carrinho, setCarrinho] = useState([]);
-    
-    const [valorTotal, setValorTotal] = useState(0);
-    
-    useEffect(() => {
-        const savedCarrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-        setCarrinho(savedCarrinho);
-      }, []);
-    
-    function valorTotalCarrinho() {
-      let total = 0;
-      carrinho.forEach((item) => {
-        total += item.quantidade * item.valorUnitario;
-      });
-      setValorTotal(total);
-    }
-    // function adicionarItem(item) {
-    //   setCartItens((additem) => {
-    //     if (cartItens.includes(item)) {
-    //       return additem.map((itemadd) =>
-    //         itemadd.name === item.name
-    //           ? { ...item, quantidade: item.quantidade + 1 }
-    //           : ""
-    //       );
-    //     } else {
-    //       return additem([...cartItens, item]);
-    //     }
-    //   });
-    // }
-    function adicioanrItem(item){
-        const itens = [...carrinho];
-        const indexItem = itens.findIndex(i =>i.name == item.name);
-        if(indexItem !== "") itens[indexItem].quantidade +=1;
-        else setCarrinho(...carrinho, item);
-        setCarrinho(itens);
-        localStorage.setItem("carrinho",JSON.stringify(itens));
+  useEffect(() => {
+    const savedCarrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    setCarrinho(savedCarrinho);
+  }, []);
+  useEffect(() => {
+    valorTotalCarrinho(carrinho);
+  }, [carrinho]);
+
+  function valorTotalCarrinho() {
+    let total = 0;
+    carrinho.forEach((item) => {
+      total += item.quantidade * item.valorUnitario;
+    });
+    setValorTotal(total);
+  }
+
+  function adicionarItem(item) {
+    const itemadd = {
+      index: carrinho.length + 1,
+      ...item,
+      quantidade: 1,
     };
-    function removeritem(item){
-        const itens = [...carrinho];
-        const indexItem = itens.findIndex(i =>i.name == item.name);
-        if(indexItem !== ""&& itens[indexItem].quantidade <=1) itens.splice(indexItem,1); 
-        if(indexItem !== "") itens[indexItem].quantidade -=1;
-        else console.log('item não encontrado');
-        setCarrinho(itens);
-        localStorage.setItem("carrinho",JSON.stringify(itens));
+
+    const itens = [...carrinho];
+    adicionando();
+    function adicionando() {
+      if (itens.length < 1) {
+        itens.push(itemadd);
+      } else {
+        for (let i = 0; i < itens.length; i++) {
+          if (itens[i].name.toLowerCase() === itemadd.name.toLowerCase()) {
+            itens[i].quantidade += 1;
+            return;
+          }
+        }
+        itens.push(itemadd);
+      }
     }
-    function limparCarrinho(){
-        localStorage.setItem("carrinho",([]));
+
+    setCarrinho(itens);
+    localStorage.setItem("carrinho", JSON.stringify(itens));
+  }
+  function alterarQuantidade(quantidade, item) {
+    const itens = [...carrinho];
+    for (let i = 0; i < itens.length; i++) {
+      if (itens[i].name.toLowerCase() === item.name.toLowerCase()) {
+        itens[i].quantidade = quantidade;
+      }
     }
-    return (
-        <cartContext.Provider
-        value={{
-          carrinho,
-          adicioanrItem,
-          removeritem,
-          limparCarrinho,
-          valorTotalCarrinho,
-        }}
-        >
-            {props.children}
-        </cartContext.Provider>
-    );
+    setCarrinho(itens);
+    localStorage.setItem("carrinho", JSON.stringify(itens));
+  }
+  function removeritem(item) {
+    const itens = [...carrinho];
+    for (let i = 0; i < itens.length; i++) {
+      if (itens[i].name.toLowerCase() === item.name.toLowerCase()) {
+        itens.splice(i, 1);
+      }
+    }
+    setCarrinho(itens);
+    localStorage.setItem("carrinho", JSON.stringify(itens));
+  }
+  function saveCarrinho() {
+   
+    const itens = [...carrinho];
+    const produtos = itens.map(item => ({
+      idPokemon: item.pokeDex,
+      quantidade: item.quantidade,
+    }));
+    const pedido ={
+      dataPedido: "2024-06-10",
+      status: "ENVIADO",
+      idCliente: 1,
+      produtos,
+    }
+    postCarrinho(pedido)
+      .then(response => {
+        console.log('Pedido enviado com sucesso:', response.data);
+      })
+      .catch(error => {
+        console.error('Erro ao enviar o pedido:', error);
+      });
+
+  }
+  /**
+   *"dataPedido": "2024-06-10",
+  "status": "ENVIADO",
+  "idCliente": 0,
+   * idCliente: idClienteLogado
+  "produtos":[
+  {
+  quantidade: quantidade do item
+  idPOkemon: pokedex
+}
+  ]
+
+ 
+     */
+  function limparCarrinho() {
+    localStorage.setItem("carrinho", []);
+  }
+  return (
+    <cartContext.Provider
+      value={{
+        carrinho,
+        adicionarItem,
+        removeritem,
+        limparCarrinho,
+        valorTotalCarrinho,
+        valorTotal,
+        alterarQuantidade,
+        saveCarrinho,
+      }}
+    >
+      {props.children}
+    </cartContext.Provider>
+  );
 };
-export {cartContext,CartProvider};
+export { cartContext, CartProvider };

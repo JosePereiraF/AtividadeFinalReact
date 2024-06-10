@@ -1,24 +1,28 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect , useContext} from "react";
 import { NavBarPadrao } from "../../components/NavBar/NavBarP";
 import { Container, Grid } from "@mui/material";
 import styles from './styles.module.css';
 import PokemonCard from "../../components/pokeCard";
 import axios from "axios";
 import { GetAllPokemon } from "../../services/produto";
-
+import { cartContext } from "../../context/CarrinhoContext";
 
 export const PagPrincipal = () => {
 
   const [pokemons, setPokemons]= useState([]);
   const [pokemonsPorPagina, setPokemonsPorPagina] = useState(30)
   const [paginaAtual, setPaginaAtual] = useState(0)
-
+  const {adicionarItem} = useContext(cartContext);
   const pages = Math.ceil(pokemons.length / pokemonsPorPagina)
   const startIndex = paginaAtual * pokemonsPorPagina;
   const endIndex = startIndex + pokemonsPorPagina;
   const pokemonPagina = pokemons.slice(startIndex, endIndex)
 
+  function addCarrinho(item){
+    adicionarItem(item);
+    console.log(item);
+  }
 
   function obterPokemons() {
     GetAllPokemon()
@@ -59,7 +63,7 @@ export const PagPrincipal = () => {
     <Grid container spacing={3}>
             {pokemonPagina.map((pokemon) => (
               <Grid item xs={2} key={pokemon.name}>
-                <PokemonCard name={pokemon.name} image={pokemon.imagem} type1={pokemon.tipoPrimario} type2={pokemon.tipoSecundario} valor={pokemon.valorUnitario}/>
+                <PokemonCard name={pokemon.name} image={pokemon.imagem} type1={pokemon.tipoPrimario} type2={pokemon.tipoSecundario} valor={pokemon.valorUnitario} click={() => addCarrinho(pokemon)}/>
               </Grid>
             ))}
           </Grid>
