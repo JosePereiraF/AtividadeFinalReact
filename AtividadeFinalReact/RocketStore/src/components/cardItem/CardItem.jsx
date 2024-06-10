@@ -1,11 +1,15 @@
 import styles from './style.module.css';
-import { useState } from 'react';
+import { useState,useContext } from 'react';
+import { cartContext } from "../../context/CarrinhoContext";
 
-export function CardItem({imagem,nome,tipo1,tipo2,quantidadeInicial,input,valor}){
+export function CardItem({imagem,nome,tipo1,tipo2,quantidadeInicial,input,valor,item,click}){
     const [quantidade, setQuantidade] = useState(quantidadeInicial);
+    const {alterarQuantidade} = useContext(cartContext);
     const handleInputChange = (e) => {
-        setQuantidade(e.target.value);
-      };
+        const novaQuantidade = e.target.value;
+        setQuantidade(novaQuantidade);
+        alterarQuantidade(novaQuantidade, item);
+    };
 
     const tipo = () => {
         const resposta = tipo2 !== "Nulo" ? tipo2 : "";
@@ -23,6 +27,7 @@ export function CardItem({imagem,nome,tipo1,tipo2,quantidadeInicial,input,valor}
         <p>Type: {tipo()}</p>
         <p>Valor: R${valor}</p>
         <input type={input} value={quantidade} className={styles.input} onChange={handleInputChange}/>
+        <button onClick={click}>remover</button>
         </div>
         </div>
         </>

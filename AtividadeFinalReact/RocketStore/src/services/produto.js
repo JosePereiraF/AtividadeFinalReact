@@ -8,3 +8,6 @@ export const GetPokemonPage = ()=>{
     const url = '/pokemon/listar'
     return Api.get(url);
 }
+export const PostCarrinho= (pedido)=>{
+    return Api.post(pedido)
+}

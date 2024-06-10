@@ -6,16 +6,23 @@ import { FormaPagamento } from "../../components/FormaPagamento/FormaPagamento";
 import ImgFrete from '../../assets/img/Frete.png'
 import { cartContext } from "../../context/CarrinhoContext";
 
+
 export function Carrinho() {
   const [itens, setItens] = useState([]);
   const { valorTotal } = useContext(cartContext);
   const {carrinho} = useContext(cartContext);
+  const {removeritem}= useContext(cartContext);
+ const {saveCarrinho}= useContext(cartContext);
+  function removerItem(item){
+    removeritem(item);
+  }
 
   useEffect(() => {
     if (carrinho) {
       setItens(carrinho);
     }
   }, [carrinho]);
+
 
   return (
     <>
@@ -38,6 +45,8 @@ export function Carrinho() {
           </div>
          </div>
         </div>
+        <div className={styles.right}>
+
         <div className={styles.carrinho}>
           {itens.map((item, index) => (
             <CardItem
@@ -49,8 +58,14 @@ export function Carrinho() {
               quantidadeInicial={item.quantidade}
               input={"number"}
               valor={item.valorUnitario}
+              item={item}
+              click={() => removerItem(item)}
             />
           ))}
+        </div>
+        <div className={styles.comprar}>
+          <button onClick={saveCarrinho}><h3>Finalizar a compra</h3></button>
+        </div>
         </div>
       </div>
     </>

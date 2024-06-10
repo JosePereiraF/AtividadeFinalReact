@@ -43,10 +43,19 @@
     flex: 1;
   
   }
-.carrinho{
-    display: flex;
+.right{
     flex: 2;
     flex-direction: column;
+}
+.carrinho{
+    display: flex;
+    flex-direction: column;
+    max-height: 60vh;
+    overflow: auto;
+}
+.comprar{
+    display: flex;
+    justify-content: center;
 }
 .frete{
     max-height: 7rem;
