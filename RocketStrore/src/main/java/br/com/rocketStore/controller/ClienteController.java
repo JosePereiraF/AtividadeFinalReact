@@ -50,7 +50,7 @@ public class ClienteController {
 		ClienteResponseDTO clienteAtualizado = service.alterarCliente(id, cliente);
 		return ResponseEntity.ok(clienteAtualizado);
 	}
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public ResponseEntity<ClienteResponseDTO> login(@Valid @RequestBody LoginDTO login){
 		return new ResponseEntity<>(service.login(login), HttpStatus.OK);
 	}
