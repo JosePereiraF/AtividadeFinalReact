@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
-import { GetAllPokemon } from "../../services/produto";
+import { GetPokemonPage } from "../../services/produto";
 
 export function ListarPokemon(){
     const [pokemons, setPokemons]= useState([]);
 
     function obterPokemons() {
-        GetAllPokemon()
+        GetPokemonPage()
             .then((r) => {
-                setPokemons(r.results);
-                console.log(r.data[0].name);
+                setPokemons(r.data);
+                if(localStorage.getItem("carrinho")== null){
+                    localStorage.setItem("carrinho", JSON.stringify(r.data));
+                    console.log(localStorage.getItem("carrinho"));
+                }
             })
             .catch((err) => {
                 console.error('Erro ao obter pokemons:', err);

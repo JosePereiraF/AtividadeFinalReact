@@ -4,15 +4,20 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { PagPrincipal } from './pages/homePage/Home'
 import { ListarPokemon } from './pages/teste/pokemons'
+import { Carrinho } from './pages/carrinho/Carrinho'
+import { CartProvider } from './context/CarrinhoContext'
+
+
 
 
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <PagPrincipal/>
+    <CartProvider>
+      <Carrinho/>
+    </CartProvider>
     </>
   )
 }
