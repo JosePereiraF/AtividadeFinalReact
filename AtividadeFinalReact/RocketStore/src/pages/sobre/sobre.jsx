@@ -6,9 +6,13 @@ import { NavBarPadrao } from "../../components/NavBar/NavBarP"
 
 export function Sobre(){
 return(
-<><NavBarPadrao/> 
-
-<h1>SOCORRO</h1>
+<>
+<NavBarPadrao/>
+<div>
+    <div>
+        <img src alt="" />
+    </div>
+</div>
 
 </>
 )
