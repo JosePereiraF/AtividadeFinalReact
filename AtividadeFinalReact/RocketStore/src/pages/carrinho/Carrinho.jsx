@@ -26,7 +26,7 @@ export function Carrinho() {
 
   return (
     <>
-      <div className={styles.body}>
+      <div>
         <NavBarPadrao />
       </div>
       <div className={styles.container}>
@@ -47,6 +47,7 @@ export function Carrinho() {
         </div>
         <div className={styles.right}>
 
+          <p><strong>Pokemon escolhidos</strong></p>
         <div className={styles.carrinho}>
           {itens.map((item, index) => (
             <CardItem

@@ -13,9 +13,11 @@ import { Sobre } from "./pages/sobre/sobre";
 function App() {
   return (
     <>
+
       <CartProvider>
         <Rotas />
       </CartProvider>
+
     </>
   );
 }

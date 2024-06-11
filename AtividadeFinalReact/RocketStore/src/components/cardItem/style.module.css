@@ -1,31 +1,62 @@
-.type{
-    color: black;
-}
-.card{
-    display: flex;
-    flex-direction: row;
-    height: 8rem;
-    width: 10rem;
-    gap: 10px;
-}
-
-.infos{
-    gap: 10px;
+.card {
     display: flex;
     flex-direction: column;
-    min-width: 100%;
-} 
-.divImg{
-    flex: 1;
-    min-width: 90%;
-}
-.img{
-    width: 100%;
-    height: 100%;
-}
-.botaoAdd{
-    width: 50px;
-    height: 20px;
-    color:black;
+    align-items: center;
+    justify-content: space-between;
+    width: 250px;
+    padding: 16px;
+    margin: 16px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 15px 16px rgba(0, 0, 0, 0.5);
+    background-image: url(../../assets/img/backgroundPokmeon-dragon.png);
+    background-size: 100%;
+  }
+
+  .divImg {
     
-}
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+    margin-top: 18px;
+  }
+  
+  .img {
+    min-width: 65%;
+    height: auto;
+    border-radius: 12px;
+  }
+  
+  .infos {
+    text-align: center;
+  }
+  
+  .nome, .tipo, .valor {
+    margin: 8px 0;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .input {
+    width: 80%;
+    padding: 8px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .botaoRemove {
+    padding: 10px 20px;
+    margin-top: 16px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .botaoRemove:hover {
+    background-color: #e60000;
+  }
+

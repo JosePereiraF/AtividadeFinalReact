@@ -23,12 +23,14 @@ export function CardItem({imagem,nome,tipo1,tipo2,quantidadeInicial,input,valor,
         <img src={imagem} alt={nome}className={styles.img}/>
         </div>
         <div className={styles.infos}>
-        <p>Nome: {nome}</p>
-        <p>Type: {tipo()}</p>
-        <p>Valor: R${valor}</p>
-        <input type={input} value={quantidade} className={styles.botaoAdd} onChange={handleInputChange} />
-        <button onClick={click}>remover</button>
+
+        <p><strong> Nome: {nome}</strong></p>
+        <p><strong>Type: {tipo()}</strong></p>
+        <p><strong>Valor: R${valor}</strong></p>
+        <input type={input} value={quantidade} className={styles.input} onChange={handleInputChange}/>
+
         </div>
+        <button className={styles.botaoRemove} onClick={click}>remover</button>
         </div>
         </>
     )
