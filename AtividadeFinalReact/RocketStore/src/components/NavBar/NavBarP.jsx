@@ -77,9 +77,9 @@ export function NavBarPadrao({ pokemonFiltro }) {
                 <Link to="/" className={styles.Home}>
                   HOME
                 </Link>
-                <a href="" className={styles.Home}>
+                <Link to ="/sobre" className={styles.Home}>
                   SOBRE NOS
-                </a>
+                </Link>
                 <Search>
                   <SearchIconWrapper>
                     <SearchIcon />

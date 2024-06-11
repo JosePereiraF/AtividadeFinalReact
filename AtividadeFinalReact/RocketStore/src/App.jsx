@@ -8,6 +8,7 @@ import { Carrinho } from "./pages/carrinho/Carrinho";
 import { CartProvider } from "./context/CarrinhoContext";
 import { Login } from "./pages/Login/Login";
 import { Rotas } from "./routes/Routes";
+import { Sobre } from "./pages/sobre/sobre";
 
 function App() {
   return (
