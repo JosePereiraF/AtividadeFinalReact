@@ -1,4 +1,4 @@
-import "./Styles/Input.css";
+import style from "./Styles/Input.module.css";
 export function Input({ type, value, placeholder, onChange, className }) {
   return (
     <>
@@ -7,7 +7,7 @@ export function Input({ type, value, placeholder, onChange, className }) {
         value={value}
         placeholder={placeholder}
         onChange={onChange}
-        className={className}
+        className={style.botao}
       />
     </>
   );

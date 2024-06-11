@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 import { Input } from "../../components/INPUT/Input";
 import { Botao } from "../../components/BOTAO/Botao";
 
-import "./Styles/login.css";
+import style from "./Styles/login.module.css";
 
 export function Login() {
   //variáveis e seus sets para login e senha
@@ -95,8 +95,8 @@ export function Login() {
   //retorno da tela que será lido pelo ReactJS
   return (
     <>
-      <form onSubmit={onSubmitClick} className={"mainContainer"}>
-        <div className={"titleContainer"}>
+      <form onSubmit={onSubmitClick} className={style.mainContainer}>
+        <div className={style.titleContainer}>
           <div>
             <img
               src="../src/assets/img/logoPokestore.png"
@@ -105,37 +105,37 @@ export function Login() {
           </div>
         </div>
         <br />
-        <div className={"inputContainer"}>
+        <div className={style.inputContainer}>
           <Input
             type="text"
             value={login}
             placeholder="Digite seu e-mail"
             onChange={(ev) => setLogin(ev.target.value)}
           ></Input>
-          <label className="errorLabel">{loginErro}</label>
+          <label className={style.errorLabel}>{loginErro}</label>
         </div>
         <br />
-        <div className={"inputContainer"}>
+        <div className={style.inputContainer}>
           <Input
             type="password"
             value={senha}
             placeholder="Digite sua senha"
             onChange={(ev) => setSenha(ev.target.value)}
           ></Input>
-          <label className="errorLabel">{senhaErro}</label>
-          <label className="errorLabel">{erroGeral}</label>
+          <label className={style.errorLabel}>{senhaErro}</label>
+          <label className={style.errorLabel}>{erroGeral}</label>
         </div>
         <br />
-        <div className={"inputContainer"}>
+        <div className={style.inputContainer}>
           <Botao
             type="submit"
             value={"ENTRAR"}
-            className={"inputButton"}
+            className={style.inputButton}
           ></Botao>
         </div>
         <Link to="/cadastro">Faça seu cadastro</Link>
       </form>
-      <div className="botaoVoltar">
+      <div className={style.botaoVoltar}>
         <Link to="/">
           <img
             src="../src/assets/img/botaoVoltar.png"

@@ -26,7 +26,7 @@ export function CardItem({imagem,nome,tipo1,tipo2,quantidadeInicial,input,valor,
         <p>Nome: {nome}</p>
         <p>Type: {tipo()}</p>
         <p>Valor: R${valor}</p>
-        <input type={input} value={quantidade} className={styles.input} onChange={handleInputChange}/>
+        <input type={input} value={quantidade} className={styles.botaoAdd} onChange={handleInputChange} />
         <button onClick={click}>remover</button>
         </div>
         </div>

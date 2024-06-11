@@ -1,4 +1,4 @@
-input {
+.botao {
     background: #ede6ac;
     color: rgb(0, 0, 0);
     padding: 12px 24px;
@@ -11,7 +11,7 @@ input {
     border-width: 2px;
   }
 
-  input:focus
+  .botao:focus
   {
     outline: #bea64a;
     outline-width: 3px;
