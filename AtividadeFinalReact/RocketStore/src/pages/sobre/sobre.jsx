@@ -13,8 +13,11 @@ export function Sobre(){
 return(
     /**<h1>SOCORRO D:</h1> */
 <>
+<NavBarPadrao/>
 <div>
-    <NavBarPadrao/>
+    <div>
+        <img src alt="" />
+    </div>
 </div>
 
 

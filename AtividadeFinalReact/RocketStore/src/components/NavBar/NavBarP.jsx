@@ -80,6 +80,7 @@ export function NavBarPadrao({ pokemonFiltro }) {
                 <Link to ="/sobre" className={styles.Home}>
                   SOBRE NOS
                 </Link>
+                  <Link to="/login" className={styles.Home}>Login</Link>
                 <Search>
                   <SearchIconWrapper>
                     <SearchIcon />
@@ -88,6 +89,8 @@ export function NavBarPadrao({ pokemonFiltro }) {
                     placeholder="Search…"
                     inputProps={{ "aria-label": "search" }}
                     onChange={handleSearchChange}
+                    
+                  
                   />
                 </Search>
                 <Link to="/carrinho">
