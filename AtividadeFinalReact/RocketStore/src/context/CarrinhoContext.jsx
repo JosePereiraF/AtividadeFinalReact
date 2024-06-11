@@ -47,7 +47,8 @@ const CartProvider = (props) => {
     }
 
     setCarrinho(itens);
-    localStorage.setItem("carrinho", JSON.stringify(itens));
+    localStorage.setItem("carrinho", JSON.stringify(itens));  
+    alert("item Adicionado ao carrinho");
   }
   function alterarQuantidade(quantidade, item) {
     const itens = [...carrinho];
@@ -70,7 +71,7 @@ const CartProvider = (props) => {
     localStorage.setItem("carrinho", JSON.stringify(itens));
   }
   function saveCarrinho() {
-   
+   const cliente = JSON.parse(localStorage.getItem("dadosUsuario"));
     const itens = [...carrinho];
     const produtos = itens.map(item => ({
       idPokemon: item.pokeDex,
@@ -79,7 +80,7 @@ const CartProvider = (props) => {
     const pedido ={
       dataPedido: "2024-06-10",
       status: "ENVIADO",
-      idCliente: 1,
+      idCliente: cliente.id,
       produtos,
     }
     postCarrinho(pedido)
@@ -89,24 +90,13 @@ const CartProvider = (props) => {
       .catch(error => {
         console.error('Erro ao enviar o pedido:', error);
       });
-
+      alert("Compra finalizada!");
+      limparCarrinho();
+      addEventListener(location.reload());
   }
-  /**
-   *"dataPedido": "2024-06-10",
-  "status": "ENVIADO",
-  "idCliente": 0,
-   * idCliente: idClienteLogado
-  "produtos":[
-  {
-  quantidade: quantidade do item
-  idPOkemon: pokedex
-}
-  ]
 
- 
-     */
   function limparCarrinho() {
-    localStorage.setItem("carrinho", []);
+    localStorage.setItem("carrinho", JSON.stringify([]));
   }
   return (
     <cartContext.Provider

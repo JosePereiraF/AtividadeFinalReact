@@ -3,7 +3,7 @@ package br.com.rocketStore.DTO;
 import br.com.rocketStore.entity.Cliente;
 
 public class ClienteResponseDTO {
-
+	private Long id;
 	private String nome;
 	private String email;
 	private String cpf;
@@ -11,6 +11,7 @@ public class ClienteResponseDTO {
 	private String telefone2;
 
 	public ClienteResponseDTO(Cliente cliente) {
+		id =cliente.getId();
 		nome = cliente.getNome();
 		telefone1 = cliente.getTelefone1();
 		telefone2 = cliente.getTelefone2();
@@ -60,5 +61,15 @@ public class ClienteResponseDTO {
 	public void setTelefone2(String telefone2) {
 		this.telefone2 = telefone2;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
 
 }

@@ -3,7 +3,7 @@ import { Container, TextField, Button, Typography } from "@mui/material";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
 import { NavBarPadrao } from "../../components/NavBar/NavBarP";
 import Footer from "../../components/Footer/footer"; // Importando o Footer corretamente
-
+import { postCliente } from "../../services/clientes";
 export function FormPage() {
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
@@ -57,8 +57,29 @@ export function FormPage() {
     console.log("CPF:", cpf);
     console.log("Endereço:", Cep);
     setCadastrado(true); // apenas para demonstração, substitua pela lógica real de cadastro
+    saveCliente();
   };
 
+  function saveCliente(){
+    const newCliente ={
+     nome: nome,
+    telefone1: telefone,
+    email: email,
+    cpf: cpf,
+    senha: senha,
+    confirmaSenha: confirmarSenha,
+    cep: Cep,
+    numero: 0
+
+    }
+    postCliente(newCliente)
+    .then(response=>{
+      console.log('enviado'+response.data);
+    })
+    .catch(error=>{
+      console.error('erro '+error);
+    })
+  }
   const mostrarOuOcultarSenha = () => {
     setMostrarSenha(!mostrarSenha);
   };

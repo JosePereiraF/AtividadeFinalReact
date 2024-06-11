@@ -4,5 +4,5 @@ export const api = axios.create({
   });
 export const postCarrinho= (pedido)=>{
    const enviaURL= "pedidos";
-    return api.post(enviaURL,pedido)
+    return api.post(enviaURL,pedido);
 }
