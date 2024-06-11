@@ -22,6 +22,8 @@ return(
 
 
 <div className={style.caixaPg}>
+    <h1>Pokdex</h1>
+    <h2>Sobre nós</h2>
     <div className={style.caixa1}>
     <img src={Julia} className={style.julia} />
     <img src={Amanda} className={style.amanda} />
